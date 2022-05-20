@@ -46,5 +46,22 @@ export default [
         }
       })
     ]
+  },
+  {
+    ...config,
+    output: {
+      ...config.output,
+      file: `dist/${meta.name}.min.cjs`,
+      format: "cjs",
+      sourcemap: true
+    },
+    plugins: [
+      ...config.plugins,
+      terser({
+        output: {
+          preamble: config.output.banner
+        }
+      })
+    ]
   }
 ];
